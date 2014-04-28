@@ -21,7 +21,7 @@ module Fog
             :parser     => Fog::ToHashDocument.new,
             :path       => "admin/network/#{id}"
           )
-          ensure_list! response.body[:Configuration][:IpScopes][:IpScope], :IpRanges, :IpRange
+          ensure_list! response.body[:Configuration][:IpScope], :IpRanges, :IpRange
           response
         end
       end

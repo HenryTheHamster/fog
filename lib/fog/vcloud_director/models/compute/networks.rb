@@ -23,7 +23,7 @@ module Fog
           data[:is_shared] = raw_network[:IsShared]
           net_config = raw_network[:Configuration]
           data[:fence_mode] = net_config[:FenceMode]
-          ip_scope = net_config[:IpScopes][:IpScope]
+          ip_scope = net_config[:IpScope]
           data[:is_inherited] = ip_scope[:IsInherited]
           data[:gateway] = ip_scope[:Gateway]
           data[:netmask] = ip_scope[:Netmask]

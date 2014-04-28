@@ -113,20 +113,18 @@ module Fog
           end
 
           if configuration = options[:Configuration]
-            if ip_scopes = configuration[:IpScopes]
-              if ip_scope = ip_scopes[:IpScope]
-                [:IsInherited, :Gateway, :Netmask,
-                  :Dns1, :Dns2, :DnsSuffix, :IsEnabled].each do |key|
-                    network_body[key] = ip_scope[key] if ip_scope.key?(key)
-                end
-                if ip_ranges = ip_scope[:IpRanges]
-                  network_body[:IpRanges] = []
-                  ip_ranges.each do |ipr|
-                    network_body[:IpRanges] << {
-                      :StartAddress => ipr[:IpRange][:StartAddress],
-                      :EndAddress   => ipr[:IpRange][:EndAddress]
-                    }
-                  end
+            if ip_scope = ip_scopes[:IpScope]
+              [:IsInherited, :Gateway, :Netmask,
+                :Dns1, :Dns2, :DnsSuffix, :IsEnabled].each do |key|
+                  network_body[key] = ip_scope[key] if ip_scope.key?(key)
+              end
+              if ip_ranges = ip_scope[:IpRanges]
+                network_body[:IpRanges] = []
+                ip_ranges.each do |ipr|
+                  network_body[:IpRanges] << {
+                    :StartAddress => ipr[:IpRange][:StartAddress],
+                    :EndAddress   => ipr[:IpRange][:EndAddress]
+                  }
                 end
               end
             end
